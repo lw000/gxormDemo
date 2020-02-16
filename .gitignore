@@ -1,4 +1,3 @@
-/ggorm.exe
 .idea/.gitignore
 .idea/gxormDemo.iml
 .idea/misc.xml
@@ -6,3 +5,4 @@
 .idea/thriftCompiler.xml
 .idea/vcs.xml
 /.idea/code-comments.xml
+/gxormDemo.exe
