@@ -2,6 +2,7 @@ package main
 
 import (
 	"demo/gxormDemo/tables"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 	"log"
@@ -11,9 +12,20 @@ var (
 	engine *xorm.Engine
 )
 
+var (
+	user     = "root"
+	password = "lwstar"
+	host     = "127.0.0.1"
+	port     = 3306
+	database = "lw"
+	charset  = "utf8"
+)
+
 func main() {
 	var err error
-	engine, err = xorm.NewEngine("mysql", "root:lwstar@tcp(127.0.0.1:3306)/lw?charset=utf8")
+	// dataSourceName := "root:lwstar@tcp(127.0.0.1:3306)/lw?charset=utf8"
+	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s", user, password, host, port, database, charset)
+	engine, err = xorm.NewEngine("mysql", dataSourceName)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,8 +37,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	for i := 0; i < 100; i++ {
-		tables.Insert(engine, "liwei", 30, 30, "陕西西安")
+	for i := 0; i < 10; i++ {
+		tables.Insert(engine, "levi", 30, 30, "陕西西安")
 	}
 
 	u := tables.Query(engine, 19)
